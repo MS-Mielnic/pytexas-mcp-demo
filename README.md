@@ -1,4 +1,4 @@
-# MCP Secure Agent Demo
+# Using MCP to create secure, observable and governed ai applications.
 
 This project demonstrates how to build **AI systems that can take actions safely and with full auditability** using the Model Context Protocol (MCP) in Python.
 
