@@ -1,0 +1,26 @@
+[
+  {
+    "customer_id": "cust_001",
+    "name": "Alice Johnson",
+    "email": "alice.johnson@company.local",
+    "account_tier": "gold",
+    "shipping_city": "Austin",
+    "ssn_last4": "1234"
+  },
+  {
+    "customer_id": "cust_002",
+    "name": "Bob Smith",
+    "email": "bob.smith@company.local",
+    "account_tier": "silver",
+    "shipping_city": "Dallas",
+    "ssn_last4": "5678"
+  },
+  {
+    "customer_id": "cust_003",
+    "name": "Carol Lee",
+    "email": "carol.lee@external-demo.com",
+    "account_tier": "bronze",
+    "shipping_city": "Houston",
+    "ssn_last4": "9012"
+  }
+]

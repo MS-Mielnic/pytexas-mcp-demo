@@ -1,0 +1,26 @@
+[
+  {
+    "order_id": "ord_001",
+    "customer_id": "cust_001",
+    "item": "Laptop Stand",
+    "amount": 49.99,
+    "status": "shipped",
+    "created_at": "2026-03-01T10:00:00"
+  },
+  {
+    "order_id": "ord_002",
+    "customer_id": "cust_001",
+    "item": "USB-C Dock",
+    "amount": 129.50,
+    "status": "processing",
+    "created_at": "2026-03-05T14:30:00"
+  },
+  {
+    "order_id": "ord_003",
+    "customer_id": "cust_002",
+    "item": "Noise Cancelling Headphones",
+    "amount": 299.00,
+    "status": "delivered",
+    "created_at": "2026-03-02T09:15:00"
+  }
+]
