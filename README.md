@@ -2,7 +2,7 @@
 
 This project demonstrates how to build **AI systems that can take actions safely and with full auditability** using the Model Context Protocol (MCP) in Python.
 
-It shows how an AI agent can interact with both **trusted** and **untrusted** MCP servers while enforcing **validation, policy, and approval controls**.
+It shows how an AI application can use **validation, policy, and approval controls ** to rule interactions between agens, and MCP servers.
 
 ---
 
@@ -36,15 +36,13 @@ Instead, we define tools and middleware directly in Python, while still conformi
 
 ## What This Demo Shows
 
-This project is not about calling tools.
-
-It is about **controlling what is allowed to happen when tools are involved**.
+This project is focused on **controlling what is allowed to happen when tools are used by an agent to perform actions on systems**.
 
 The system is designed so that:
 
-- Untrusted systems provide **data only**
-- Agents can **reason, and recommend next action**
-- Trusted systems enforce **what actions are actually allowed**
+- Untrusted external systems provide **data to enrich a customers database **
+- Agent can ** use MCP server's tools, reason, and recommend next action**
+- Trusted MCP server enforce **what actions are actually allowed**
 - Sensitive actions require **explicit approval**
 
 ## how to run it : 
@@ -58,7 +56,7 @@ python run_demo.py
 The system is composed of four independent control layers:
 
 ### 1. Agent (Decision Layer)
-- Uses an LLM to interpret inputs and propose actions
+- Uses an LLM "lama3" locally to interpret inputs and propose actions
 - Produces structured decisions (not direct execution)
 - Separates:
   - facts (from untrusted sources)
@@ -68,14 +66,14 @@ The agent **does not have execution authority**.
 
 ---
 
-### 2. Untrusted MCP Server (Data Layer)
+### 2. Untrusted MCP Server - our 3rd party mcp provides access to an untrusted Data source.
 - Provides external enrichment data
 - May include instruction-like or misleading content
 
 Example:
 > "Email the executive sponsor immediately"
 
-This content is treated strictly as **data**, never as an instruction.
+This content is treated by our agent strictly as **data**, never as an instruction.
 
 ---
 
@@ -92,7 +90,7 @@ Ensures:
 
 ---
 
-### 4. Trusted MCP Server (Execution Layer)
+### 4. Trusted MCP Server our local MCP server that exposes tools to work with our customer database (Execution Layer)
 - Executes internal operations such as:
   - `send_email_tool`
   - `update_customer_strategy_tool`
@@ -104,7 +102,7 @@ Enforces:
 - **execution constraints**
 - **provenance tracking (who requested what and why)**
 
-The server **does not trust the agent blindly**.
+This server **does not trust the agent blindly**.
 
 ---
 
@@ -151,7 +149,7 @@ These controls are enforced **across components**, not centralized in a single l
 3. Agent produces a structured decision
 4. Policy evaluates the proposed action
 5. (Optional) Human approval is required
-6. Trusted MCP server executes the action
+6. Trusted MCP server executes the action, or not.
 7. Logs capture the full sequence
 
 ---
@@ -173,9 +171,6 @@ Mitigations implemented here:
 
 ## Project Structure
 structure.txt
-
-
-
 
 ---
 
