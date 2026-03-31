@@ -1,0 +1,98 @@
+.
+├── agent
+│   ├── __init__.py
+│   ├── approval.py
+│   ├── client.py
+│   ├── decision.py
+│   ├── internal_client.py
+│   ├── models.py
+│   ├── policy.py
+│   ├── prompts.py
+│   ├── validator.py
+│   └── workflow.py
+├── data
+│   ├── orders.db
+│   ├── seed
+│   │   ├── allowed_domains.json
+│   │   ├── customers.json
+│   │   ├── orders.json
+│   │   └── untrusted_accounts.json
+│   └── untrusted_demo.db
+├── docs
+│   ├── architecture.md
+│   ├── demo-flow.md
+│   ├── logging-gap-checklist.md
+│   ├── observability.md
+│   ├── policy-model.md
+│   ├── raw-vs-fastmcp-comparison.md
+│   └── repo-roadmap.md
+├── logs
+│   ├── audit
+│   │   └── audit.jsonl
+│   └── protocol
+│       └── protocol.log
+├── pyproject.toml
+├── README.md
+├── requirements
+│   ├── agent.txt
+│   ├── base.txt
+│   ├── dev.txt
+│   ├── fastmcp.txt
+│   └── raw.txt
+├── run_demo.py
+├── scripts
+│   ├── create_customer_strategy_table.py
+│   ├── demo_reset.sh
+│   ├── init_env.sh
+│   ├── logs
+│   │   ├── audit
+│   │   └── protocol
+│   ├── reset_db.py
+│   ├── reset_demo_logs.py
+│   ├── run_fastmcp_server.sh
+│   ├── run_inspector_fastmcp.sh
+│   ├── run_inspector_raw.sh
+│   ├── run_raw_server.sh
+│   ├── run_untrusted_demo.sh
+│   ├── seed_db.py
+│   └── seed_untrusted_demo.py
+├── servers
+│   ├── fastmcp_server
+│   │   ├── __init__.py
+│   │   ├── middleware.py
+│   │   ├── server.py
+│   │   └── tools.py
+│   ├── raw_mcp
+│   │   ├── __init__.py
+│   │   ├── dispatcher.py
+│   │   ├── handlers.py
+│   │   ├── protocol.py
+│   │   └── server.py
+│   └── untrusted_demo_server
+│       ├── middleware.py
+│       ├── schemas.py
+│       ├── server.py
+│       └── untrusted_data_access.py
+├── shared
+│   ├── __init__.py
+│   ├── audit.py
+│   ├── config.py
+│   ├── db.py
+│   ├── demo_presenter.py
+│   ├── policy.py
+│   ├── sanitize.py
+│   ├── schemas.py
+│   ├── seed.py
+│   └── services
+│       ├── __init__.py
+│       ├── customer_strategy.py
+│       ├── customer.py
+│       ├── customers.py
+│       └── email.py
+├── structure.txt
+└── tests
+    ├── test_demo_cases.py
+    ├── test_policy.py
+    └── test_sanitize.py
+
+20 directories, 76 files
