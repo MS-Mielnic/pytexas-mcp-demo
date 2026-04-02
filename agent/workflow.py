@@ -1,3 +1,4 @@
+
 from agent.client import fetch_untrusted_customer_strategy, call_ollama
 from agent.validator import validate_external_strategy
 from agent.models import ApprovalRequest
@@ -7,7 +8,7 @@ from agent.decision import parse_llm_decision
 from agent.policy import is_allowed_action, requires_human_approval
 
 
-def run_customer_strategy_workflow(customer_id: str, verbose: bool = False) -> dict:
+def run_customer_strategy_workflow(customer_id: str, verbose: bool = False, approval_handler=None) -> dict:
     raw = fetch_untrusted_customer_strategy(customer_id)
 
     if raw is None:
@@ -111,7 +112,10 @@ Analyze this situation and recommend a safe next action.
                 reason="Policy requires approval for sensitive trusted actions.",
             )
 
-        approval_granted = request_approval(approval_request)
+        if approval_handler:
+            approval_granted = approval_handler(approval_request)
+        else:
+            approval_granted = request_approval(approval_request)
 
         if not approval_granted:
             message = "Action blocked due to lack of approval."

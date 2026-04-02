@@ -168,9 +168,8 @@ def render_demo_output(customer_id: str, result: dict[str, Any]) -> None:
     _print_header("[3/6] AGENT DECISION | LLM llama3 inside agent")
     _print_kv("recommended_action", action)
     _print_kv("llm_risks", decision.get("risks", []))
-    _print_kv("approval_required", result.get("approval_required"))
-    _print_kv("approval_granted", result.get("approval_granted"))
-    _print_kv("agent_result", final_message)
+    _print_kv("human_approval_required", result.get("approval_required"))
+    _print_kv("human_approval_granted", result.get("approval_granted"))
 
     _print_header("[4/6] POLICY AND APPROVAL | Agent policy gate")
     approval_line = None
@@ -194,7 +193,7 @@ def render_demo_output(customer_id: str, result: dict[str, Any]) -> None:
         )
         _print_kv("action", action)
         _print_kv("target", target)
-        _print_kv("approval_outcome", outcome)
+        _print_kv("human_approval_logged", outcome)
     else:
         _print_kv("approval_event", "not_required_or_not_found")
 
@@ -260,10 +259,10 @@ def render_demo_output(customer_id: str, result: dict[str, Any]) -> None:
         provenance = audit_entry.get("provenance") or {}
 
         _print_kv("audit_tool_name", audit_entry.get("tool_name"))
-        _print_kv("policy_decision", audit_entry.get("policy_decision"))
-        _print_kv("result_status", audit_entry.get("result_status"))
-        _print_kv("approval_required", execution_context.get("approval_required"))
-        _print_kv("approval_granted", execution_context.get("approval_granted"))
+        _print_kv("agent_policy_decision", audit_entry.get("policy_decision"))
+        _print_kv("secure_server_result_status", audit_entry.get("result_status"))
+        _print_kv("human_approval_required", execution_context.get("approval_required"))
+        _print_kv("human_approval_granted", execution_context.get("approval_granted"))
         _print_kv("provenance_tool", provenance.get("tool_name"))
     else:
         _print_kv("audit_entry", "not_found")

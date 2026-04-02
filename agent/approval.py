@@ -1,5 +1,14 @@
+from __future__ import annotations
+
+from dataclasses import dataclass
+
 from agent.models import ApprovalRequest
 from shared.audit import write_protocol_log
+
+
+@dataclass
+class ApprovalPending(Exception):
+    request: ApprovalRequest
 
 
 def request_approval(request: ApprovalRequest) -> bool:
