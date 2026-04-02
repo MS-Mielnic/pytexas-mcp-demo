@@ -168,8 +168,11 @@ Mitigations implemented here:
 ---
 
 ## Project Structure
+- structure.txt
 
-structure.txt
+## Databases
+
+- Databases are seeded locally using scripts and are not included in the repository.
 ---
 
 ## How to run it
