@@ -17,3 +17,6 @@ logs/
 
 # Mac
 .DS_Store
+
+#databases
+data/*.db
