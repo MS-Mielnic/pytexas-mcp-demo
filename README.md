@@ -44,6 +44,7 @@ The system is designed so that:
 - Agent can ** use MCP server's tools, reason, and recommend next action**
 - Trusted MCP server enforce **what actions are actually allowed**
 - Sensitive actions require **explicit approval**
+---
 
 ## how to run it : 
 
@@ -52,7 +53,7 @@ python run_demo.py
 
 or 
 
-streamlit run streamlit_app/app.py
+streamlit run streamlit_app/app.py'''
 ---
 
 ## Architecture Overview
