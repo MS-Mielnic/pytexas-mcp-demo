@@ -49,6 +49,10 @@ The system is designed so that:
 
 ```bash
 python run_demo.py
+
+or 
+
+streamlit run streamlit_app/app.py
 ---
 
 ## Architecture Overview
