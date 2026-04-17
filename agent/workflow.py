@@ -1,4 +1,3 @@
-
 from agent.client import fetch_untrusted_customer_strategy, call_ollama
 from agent.validator import validate_external_strategy
 from agent.models import ApprovalRequest
@@ -6,9 +5,14 @@ from agent.approval import request_approval
 from agent.internal_client import send_internal_email, update_internal_customer_strategy
 from agent.decision import parse_llm_decision
 from agent.policy import is_allowed_action, requires_human_approval
+from shared.contact_lookup import get_contact_email
 
 
-def run_customer_strategy_workflow(customer_id: str, verbose: bool = False, approval_handler=None) -> dict:
+def run_customer_strategy_workflow(
+    customer_id: str,
+    verbose: bool = False,
+    approval_handler=None,
+) -> dict:
     raw = fetch_untrusted_customer_strategy(customer_id)
 
     if raw is None:
@@ -85,6 +89,10 @@ Analyze this situation and recommend a safe next action.
             "message": message,
         }
 
+    email_target = None
+    if action == "send_email":
+        email_target = get_contact_email(customer_id)
+
     if requires_human_approval(action):
         approval_required = True
         if verbose:
@@ -93,9 +101,10 @@ Analyze this situation and recommend a safe next action.
         if action == "send_email":
             approval_request = ApprovalRequest(
                 action=action,
-                target="alice.johnson@company.local",
+                target=email_target,
                 content="Follow up on customer strategy review.",
                 reason="Policy requires approval for sensitive trusted actions.",
+                risk_flags=sanitized.risk_flags,
             )
         elif action == "update_strategy":
             approval_request = ApprovalRequest(
@@ -103,6 +112,7 @@ Analyze this situation and recommend a safe next action.
                 target=sanitized.customer_id,
                 content="Store sanitized strategy update in trusted internal system.",
                 reason="Policy requires approval for sensitive trusted actions.",
+                risk_flags=sanitized.risk_flags,
             )
         else:
             approval_request = ApprovalRequest(
@@ -110,6 +120,7 @@ Analyze this situation and recommend a safe next action.
                 target="unknown",
                 content="Requested sensitive action.",
                 reason="Policy requires approval for sensitive trusted actions.",
+                risk_flags=sanitized.risk_flags,
             )
 
         if approval_handler:
@@ -135,7 +146,7 @@ Analyze this situation and recommend a safe next action.
 
     if action == "send_email":
         result = send_internal_email(
-            "alice.johnson@company.local",
+            email_target,
             "Follow up on customer strategy review.",
         )
         if verbose:

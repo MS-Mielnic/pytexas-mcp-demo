@@ -20,3 +20,7 @@ logs/
 
 #databases
 data/*.db
+
+#qr_code
+generate_qrcode.py
+github_qr_custom.png

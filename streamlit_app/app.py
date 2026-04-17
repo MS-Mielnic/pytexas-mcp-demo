@@ -230,9 +230,10 @@ def render_pending_approval() -> None:
 
     def approval_request_content() -> None:
         show_kv("action", request.action)
-        show_kv("target", request.target)
+        #show_kv("target", request.target)
         show_kv("content", request.content)
         show_kv("reason", request.reason)
+        show_kv("risk_flags", request.risk_flags or [])
 
         col1, col2 = st.columns(2)
 

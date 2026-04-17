@@ -19,6 +19,7 @@ def request_approval(request: ApprovalRequest) -> bool:
     if request.content:
         print(f"Content: {request.content}")
     print(f"Reason: {request.reason}")
+    print(f"Risk flags: {request.risk_flags or []}")
 
     response = input("Approve? (yes/no): ").strip().lower()
     approved = response in {"yes", "y"}

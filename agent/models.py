@@ -34,3 +34,4 @@ class ApprovalRequest(BaseModel):
     target: Optional[str] = None
     content: Optional[str] = None
     reason: str
+    risk_flags: list[str] | None = None
